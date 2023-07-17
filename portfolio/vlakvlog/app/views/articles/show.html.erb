@@ -1,6 +1,18 @@
-<h1>Articles#show</h1>
-<h2><%= @article.title %></h2>
+<h1><%= @article.title %></h1>
 
 <p><%= @article.body %></p>
-<p>Creado: <%= @article.created_at %> </p>
-<p>Actualizado: <%= @article.updated_at %> </p>
+
+<ul>
+  <li><%= link_to "Editar", edit_article_path(@article) %></li>
+  <li><%= link_to "Eliminar", article_path(@article), data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "Are you sure?"
+                  } %></li>
+</ul>
+
+<h2>Comentarios</h2>
+<%= render @article.comments %>
+
+<h2>Añadir comentario:</h2>
+<%= render 'comments/form' %>
+
