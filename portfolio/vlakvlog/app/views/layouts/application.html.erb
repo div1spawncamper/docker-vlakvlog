@@ -16,7 +16,7 @@
         Bienvenido <%= current_user.email %>
         <%= link_to 'Cerrar sesión', destroy_user_session_path, method: :delete %>
       <% else %>
-        <%= link_to 'Iniciar sesión con GitHub', user_github_omniauth_authorize_path %>
+        <% link_to 'Iniciar sesión con GitHub', user_github_omniauth_authorize_path %>
       <% end %>
     </header>
     <%= yield %>
