@@ -1,23 +1,6 @@
 <h1>Nuevo Post</h1>
-<% render "form", article: @article %>
+
 <%= form_with model: @article do |form| %>
-  <div>
-    <%= form.label :title, "Título" %><br>
-    <%= form.text_field :title %>
-    <% @article.errors.full_messages_for(:title).each do |message| %>
-      <div><%= message %></div>
-      <% end %>
-  </div>
+  <%= render "form", article: @article %>
 
-  <div>
-    <%= form.label :body, "Mensaje" %><br>
-    <%= form.text_area :body %><br>
-     <% @article.errors.full_messages_for(:body).each do |message| %>
-      <div><%= message %></div>
-      <% end %>
-  </div>
-
-  <div>
-    <%= form.submit "Crear post" %>
-  </div>
 <% end %>
