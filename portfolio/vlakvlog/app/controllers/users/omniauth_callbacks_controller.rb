@@ -15,6 +15,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
         provider: auth.provider,
         uid: auth.uid,
         email: auth.info.email,
+        username: auth.info.nickname, # Aquí es donde asignamos el nombre de usuario
         password: Devise.friendly_token[0, 20]
       )
     end

@@ -5,11 +5,16 @@ El blog tiene <%= Article.public_count %> posts.
 <ul>
   <% @articles.each do |article| %>
     <% unless article.archived? %>
-    <li>
-      <%= link_to article.title, article %>
-    </li>
-  <% end %>
+      <li>
+        <%= link_to article.title, article %>
+      </li>
+    <% end %>
   <% end %>
 </ul>
 
-<%= link_to "Nuevo Post", new_article_path %>
+<% if user_signed_in? %>
+  <%= link_to "Nuevo Post", new_article_path %>
+  <%= link_to "Cerrar Sesión", destroy_user_session_path, method: :delete %>
+<% else %>
+  <%= link_to "Iniciar Sesión", new_user_session_path %>
+<% end %>

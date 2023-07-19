@@ -3,16 +3,22 @@
 <p><%= @article.body %></p>
 
 <ul>
-  <li><%= link_to "Editar", edit_article_path(@article) %></li>
-  <li><%= link_to "Eliminar", article_path(@article), data: {
-                    turbo_method: :delete,
-                    turbo_confirm: "Are you sure?"
-                  } %></li>
+  <% if user_signed_in? && (current_user == @article.user || current_user.has_role?(:admin)) %>
+    <li><%= link_to "Editar", edit_article_path(@article) %></li>
+    <li><%= link_to "Eliminar", article_path(@article), data: {
+                      turbo_method: :delete,
+                      turbo_confirm: "Are you sure?"
+                    } %></li>
+  <% end %>
 </ul>
 
 <h2>Comentarios</h2>
 <%= render @article.comments %>
 
-<h2>Añadir comentario:</h2>
-<%= render 'comments/form' %>
+<% if user_signed_in? %>
+  <h2>Add comment:</h2>
+  <%= render 'comments/form' %>
+<% else %>
+  <p>Inicia sesión para dejar un comentario.</p>
+<% end %>
 

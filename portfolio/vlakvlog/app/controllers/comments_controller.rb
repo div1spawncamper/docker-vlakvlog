@@ -1,7 +1,9 @@
 class CommentsController < ApplicationController
+  before_action :authenticate_user!, only: [:create, :edit, :update, :destroy]
+  load_and_authorize_resource
   def create
     @article = Article.find(params[:article_id])
-    @comment = @article.comments.create(comment_params)
+    @comment = @article.comments.create(comment_params.merge(user: current_user))
     redirect_to article_path(@article)
   end
 

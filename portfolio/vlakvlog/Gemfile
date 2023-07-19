@@ -51,6 +51,9 @@ gem 'omniauth-rails_csrf_protection'
 gem 'cancancan'
 gem 'rolify'
 
+# Dashboard Admin
+gem 'administrate'
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 

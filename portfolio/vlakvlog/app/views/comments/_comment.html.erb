@@ -1,17 +1,18 @@
-<% unless comment.archived? %>
 <p>
-  <strong>Autor:</strong>
-  <%= comment.commenter %>
+  <strong>Commenter:</strong>
+  <%= comment.user.username %>
 </p>
 
 <p>
-  <strong>Comentario:</strong>
+  <strong>Comment:</strong>
   <%= comment.body %>
 </p>
+
 <p>
-    <%= link_to "Eliminar comentario", [comment.article, comment], data: {
-                  turbo_method: :delete,
-                  turbo_confirm: "Are you sure?"
-                } %>
-  </p>
-<% end %>
+  <% if user_signed_in? && (current_user == comment.user || current_user.has_role?(:admin)) %>
+    <%= link_to 'Elminar comentario', [comment.article, comment],
+                  method: :delete,
+                  data: { confirm: 'You sure?' } %>
+  <% end %>
+</p>
+
