@@ -13,10 +13,14 @@
   <body>
     <header>
       <% if user_signed_in? %>
-        Bienvenido <%= current_user.username %>!
+        <% if current_user.username.present? %>
+          Bienvenido <%= current_user.username %>!
+        <% else %>
+          Bienvenido <%= current_user.email %>!
+        <% end %>
         <%= link_to 'Cerrar sesión', destroy_user_session_path, method: :delete %>
       <% else %>
-        <% link_to 'Iniciar sesión con GitHub', user_github_omniauth_authorize_path %>
+        <%= link_to 'Iniciar sesión con GitHub', user_github_omniauth_authorize_path %>
       <% end %>
     </header>
     <%= yield %>

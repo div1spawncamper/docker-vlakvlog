@@ -9,7 +9,7 @@ module Admin
     before_action :authenticate_admin
 
     def authenticate_admin
-      # TODO Add authentication logic here.
+      redirect_to new_user_session_path unless current_user&.has_role?(:admin)
     end
 
     # Override this value to specify the number of elements to display at a time
