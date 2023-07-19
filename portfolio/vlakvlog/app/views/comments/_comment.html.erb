@@ -10,7 +10,7 @@
 
 <p>
   <% if user_signed_in? && (current_user == comment.user || current_user.has_role?(:admin)) %>
-    <%= link_to 'Elminar comentario', [comment.article, comment],
+    <%= button_to 'Elminar comentario', [comment.article, comment],
                   method: :delete,
                   data: { confirm: 'You sure?' } %>
   <% end %>

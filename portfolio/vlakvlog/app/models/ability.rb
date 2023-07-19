@@ -11,6 +11,7 @@ class Ability
       # Permissions for logged-in users
       can :create, Article
       can [:update, :destroy], Article, user_id: user.id
+      can :read, Comment
       can [:create, :update, :destroy], Comment, user_id: user.id
     else
       # Guest permissions (read-only)
