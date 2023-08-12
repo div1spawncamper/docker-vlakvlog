@@ -4,6 +4,9 @@ require "rails/test_help"
 
 class ActiveSupport::TestCase
   include Devise::Test::ControllerHelpers
+  include Devise::Test::IntegrationHelpers
+  include Warden::Test::Helpers
+
   OmniAuth.config.test_mode = true
   # Run tests in parallel with specified workers
   parallelize(workers: :number_of_processors)
