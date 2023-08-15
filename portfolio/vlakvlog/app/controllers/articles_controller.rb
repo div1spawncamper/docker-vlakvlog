@@ -17,6 +17,14 @@ class ArticlesController < ApplicationController
   def create
     @article = current_user.articles.build(article_params)
 
+    # Asociar imágenes al artículo
+    if params[:article][:images]
+      params[:article][:images].each do |image|
+        @article.images.attach(image)
+      end
+    end
+
+
     if @article.save
       redirect_to @article
     else
@@ -45,6 +53,6 @@ class ArticlesController < ApplicationController
 
 private
   def article_params
-    params.require(:article).permit(:title, :body, :status)
+    params.require(:article).permit(:title, :body, :status, :images )
   end
 end
