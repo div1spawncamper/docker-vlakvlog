@@ -1,14 +1,29 @@
 <h1><%= @article.title %></h1>
 
+<% if @article.images.attached? %>
+  <div>
+    <% @article.images.each do |image| %>
+      <div>
+        <%= image_tag image.variant(resize_to_limit: [1920, 1080]) %>
+        <% if user_signed_in? && (current_user == @article.user || current_user.has_role?(:admin)) %>
+          <%= button_to 'Eliminar imagen', delete_image_article_path(@article, image_id: image.id), method: :delete, data: { confirm: '¿Estás seguro?' } %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+
 <p><%= @article.body %></p>
 
 <ul>
   <% if user_signed_in? && (current_user == @article.user || current_user.has_role?(:admin)) %>
     <li><%= link_to "Editar", edit_article_path(@article) %></li>
-    <li><%= link_to "Eliminar", article_path(@article), data: {
+    <li>
+      <%= link_to "Eliminar", article_path(@article), data: {
                       turbo_method: :delete,
-                      turbo_confirm: "Are you sure?"
-                    } %></li>
+                      turbo_confirm: "¿Estás seguro?"
+                    } %>
+    </li>
   <% end %>
 </ul>
 
@@ -16,9 +31,8 @@
 <%= render @article.comments %>
 
 <% if user_signed_in? %>
-  <h2>Add comment:</h2>
+  <h2>Agregar comentario:</h2>
   <%= render 'comments/form' %>
 <% else %>
   <p>Inicia sesión para dejar un comentario.</p>
 <% end %>
-

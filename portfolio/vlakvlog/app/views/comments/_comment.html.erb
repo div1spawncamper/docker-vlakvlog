@@ -8,11 +8,15 @@
   <%= comment.body %>
 </p>
 
-<p>
-  <% if user_signed_in? && (current_user == comment.user || current_user.has_role?(:admin)) %>
-    <%= button_to 'Elminar comentario', [comment.article, comment],
-                  method: :delete,
-                  data: { confirm: 'You sure?' } %>
-  <% end %>
-</p>
-
+<% if comment.images.attached? %>
+  <div>
+    <% comment.images.each do |image| %>
+      <div>
+        <%= image_tag image.variant(resize_to_limit: [800, 600]) %>
+        <% if user_signed_in? && (current_user == comment.user || current_user.has_role?(:admin)) %>
+          <%= button_to 'Eliminar imagen', delete_image_comment_path(comment, image_id: image.id), method: :delete, data: { confirm: '¿Estás seguro?' } %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
