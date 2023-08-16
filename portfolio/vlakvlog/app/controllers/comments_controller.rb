@@ -9,15 +9,16 @@ class CommentsController < ApplicationController
     redirect_to @article
   end
 
-
-
-
   def create
     @article = Article.find(params[:article_id])
     @comment = @article.comments.create(comment_params.merge(user: current_user))
-    redirect_to article_path(@article)
-  end
 
+    if @comment.save
+      redirect_to article_path(@article)
+    else
+      render 'new', status: :unprocessable_entity
+    end
+  end
 
   def destroy
     @article = Article.find(params[:article_id])
@@ -28,8 +29,17 @@ class CommentsController < ApplicationController
     redirect_to article_path(@article), status: :see_other
   end
 
+  def delete_image
+    @comment = Comment.find(params[:id])
+    @image = @comment.images.find(params[:image_id])
+    authorize! :delete_image, @comment
+    @image.purge
+    redirect_to @comment.article, notice: 'Image was successfully deleted.'
+  end
+
+
   private
     def comment_params
-      params.require(:comment).permit(:commenter, :body, :status)
+      params.require(:comment).permit(:commenter, :body, :status, images: [])
     end
 end
