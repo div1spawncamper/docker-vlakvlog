@@ -1,0 +1,46 @@
+version: '3'
+
+networks:
+  my_network:
+    driver: bridge
+
+volumes:
+  postgres_data:
+  app_data:
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: ./docker/app/Dockerfile
+    environment:
+      - RAILS_ENV=development
+    entrypoint: ["/usr/bin/entrypoint.sh"]
+    depends_on:
+      - db
+    volumes:
+      - app_data:/var/www/app/public
+    networks:
+      - my_network
+
+
+  db:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: vlak1
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - my_network
+
+  web:
+    build:
+      context: .
+      dockerfile: ./docker/web/Dockerfile
+    depends_on:
+      - app
+      - db
+    ports:
+      - 80:80
+    networks:
+      - my_network
