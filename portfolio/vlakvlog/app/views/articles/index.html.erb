@@ -13,7 +13,7 @@ El blog tiene <%= Article.public_count %> posts.
 </ul>
 
 <% if user_signed_in? %>
-  <%= link_to "Nuevo Post", new_article_path %>
+  <%= link_to "New Post", new_article_path %>
   <%= link_to "Cerrar Sesión", destroy_user_session_path, method: :delete %>
 <% else %>
   <%= link_to "Iniciar Sesión", new_user_session_path %>
