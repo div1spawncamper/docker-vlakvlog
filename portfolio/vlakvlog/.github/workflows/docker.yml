@@ -1,4 +1,4 @@
-name: CI/CD for Dockerized vlakvlog
+name: CI/CD for Dockerized Rails App
 
 on:
   push:
@@ -14,12 +14,13 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Build Docker image
-        run: docker build -t my-docker-app .
+        run: docker build -t ruby:3.2.2 .
 
       - name: Log in to Docker Hub
         run: echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
 
+      - name: Tag Docker image
+        run: docker tag my-rails-app-image "${{ secrets.DOCKERHUB_USERNAME }}/my-rails-app:${{ github.sha }}"
+
       - name: Push Docker image
-        run: |
-          docker tag my-docker-app "${{ secrets.DOCKERHUB_USERNAME }}/my-docker-app:${{ github.sha }}"
-          docker push "${{ secrets.DOCKERHUB_USERNAME }}/my-docker-app:${{ github.sha }}"
+        run: docker push "${{ secrets.DOCKERHUB_USERNAME }}/my-rails-app:${{ github.sha }}"
