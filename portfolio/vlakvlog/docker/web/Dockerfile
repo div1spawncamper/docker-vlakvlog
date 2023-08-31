@@ -14,7 +14,7 @@ WORKDIR $RAILS_ROOT
 RUN mkdir log
 
 # Copiar activos estáticos
-COPY public public/
+COPY portfolio/vlakvlog/public public/
 
 # Copiar la plantilla de configuración de Nginx
 COPY portfolio/vlakvlog/docker/web/nginx.conf /tmp/docker.nginx
