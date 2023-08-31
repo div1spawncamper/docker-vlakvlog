@@ -16,7 +16,7 @@ ENV RAILS_ENV development
 ENV RACK_ENV development
 
 # Copia el archivo Gemfile y Gemfile.lock para instalar las gemas
-COPY Gemfile Gemfile.lock $RAILS_ROOT/
+COPY portfolio/vlakvlog/Gemfile portfolio/vlakvlog/Gemfile.lock $RAILS_ROOT/
 RUN bundle install --jobs 20 --retry 5 --without development test
 
 # Copia wait-for-it.sh al contenedor
