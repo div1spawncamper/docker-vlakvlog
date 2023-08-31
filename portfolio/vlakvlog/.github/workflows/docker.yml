@@ -19,10 +19,12 @@ jobs:
           ruby-version: 3.2.2
 
       - name: Build App Docker image
-        run: docker build -t doogie17/my-rails-app -f /home/dugi/docker-vlakvlog/portfolio/vlakvlog/docker/app/Dockerfile .
+        run: |
+          docker build -t doogie17/my-rails-app -f ./docker/app/Dockerfile .
 
       - name: Build Nginx Docker image
-        run: docker build -t doogie17/my-nginx-image -f /home/dugi/docker-vlakvlog/portfolio/vlakvlog/docker/web/Dockerfile .
+        run: |
+          docker build -t doogie17/my-nginx-image -f ./docker/web/Dockerfile .
 
       - name: Log in to Docker Hub
         run: echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
