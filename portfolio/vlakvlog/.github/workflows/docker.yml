@@ -13,6 +13,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      # List files in current directory for debugging
+      - name: List files in current directory
+        run: ls -al
+
       - name: Set up Ruby environment
         uses: ruby/setup-ruby@v1
         with:
