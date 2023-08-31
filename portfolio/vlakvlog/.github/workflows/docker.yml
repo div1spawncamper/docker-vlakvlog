@@ -18,14 +18,21 @@ jobs:
         with:
           ruby-version: 3.2.2
 
-      - name: Build Docker image
-        run: docker build -t doogie17/ruby .
+      - name: Build App Docker image
+        run: docker build -t doogie17/my-rails-app -f /home/dugi/docker-vlakvlog/portfolio/vlakvlog/docker/app/Dockerfile .
+
+      - name: Build Nginx Docker image
+        run: docker build -t doogie17/my-nginx-image -f /home/dugi/docker-vlakvlog/portfolio/vlakvlog/docker/web/Dockerfile .
 
       - name: Log in to Docker Hub
         run: echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
 
-      - name: Tag Docker image
-        run: docker tag doogie17/ruby "${{ secrets.DOCKERHUB_USERNAME }}/ruby:${{ github.sha }}"
+      - name: Tag and Push App Docker image
+        run: |
+          docker tag doogie17/my-rails-app "${{ secrets.DOCKERHUB_USERNAME }}/my-rails-app:${{ github.sha }}"
+          docker push "${{ secrets.DOCKERHUB_USERNAME }}/my-rails-app:${{ github.sha }}"
 
-      - name: Push Docker image
-        run: docker push "${{ secrets.DOCKERHUB_USERNAME }}/ruby:${{ github.sha }}"
+      - name: Tag and Push Nginx Docker image
+        run: |
+          docker tag doogie17/my-nginx-image "${{ secrets.DOCKERHUB_USERNAME }}/my-nginx-image:${{ github.sha }}"
+          docker push "${{ secrets.DOCKERHUB_USERNAME }}/my-nginx-image:${{ github.sha }}"
