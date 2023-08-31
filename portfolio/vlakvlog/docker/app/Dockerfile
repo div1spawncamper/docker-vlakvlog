@@ -24,7 +24,9 @@ RUN bundle install --jobs 20 --retry 5 --without development test
 COPY . $RAILS_ROOT
 COPY /entrypoint.sh /usr/bin/
 RUN chmod +x /usr/bin/entrypoint.sh
-COPY ./docker/app/wait-for-it.sh /usr/bin/wait-for-it
+COPY wait-for-it.sh /usr/bin/wait-for-it
+RUN chmod +x /usr/bin/wait-for-it
+
 #RUN chmod +x /usr/bin/wait-for-it
 
 
