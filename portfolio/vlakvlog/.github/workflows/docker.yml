@@ -13,24 +13,16 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      # List files in the docker/app and docker/web directories for debugging
-      - name: List files in docker/app and docker/web
-        run: |
-          echo "Listing files in docker/app:"
-          ls -al ./docker/app
-          echo "Listing files in docker/web:"
-          ls -al ./docker/web
-
       - name: Set up Ruby environment
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: 3.2.2
 
       - name: Build App Docker image
-        run: docker build -t doogie17/my-rails-app -f ./docker/app/Dockerfile .
+        run: docker build -t doogie17/my-rails-app -f docker/app/Dockerfile .
 
       - name: Build Nginx Docker image
-        run: docker build -t doogie17/my-nginx-image -f ./docker/web/Dockerfile .
+        run: docker build -t doogie17/my-nginx-image -f docker/web/Dockerfile .
 
       - name: Log in to Docker Hub
         run: echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
