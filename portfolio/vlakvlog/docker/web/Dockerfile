@@ -17,7 +17,7 @@ RUN mkdir log
 COPY public public/
 
 # Copiar la plantilla de configuración de Nginx
-COPY docker/web/nginx.conf /tmp/docker.nginx
+COPY portfolio/vlakvlog/docker/web/nginx.conf /tmp/docker.nginx
 
 # Sustituir las referencias de variables en la plantilla de configuración de Nginx por valores reales del entorno
 # Colocar la configuración final en su lugar
