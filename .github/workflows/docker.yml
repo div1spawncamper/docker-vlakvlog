@@ -32,10 +32,10 @@ jobs:
 
       - name: Tag and Push App Docker image
         run: |
-          docker tag doogie17/my-rails-app "${{ secrets.DOCKERHUB_USERNAME }}/my-rails-app:${{ github.sha }}"
-          docker push "${{ secrets.DOCKERHUB_USERNAME }}/my-rails-app:${{ github.sha }}"
+          docker tag doogie17/vlakvlog-app "${{ secrets.DOCKERHUB_USERNAME }}/vlakvlog-app:${{ github.sha }}"
+          docker push "${{ secrets.DOCKERHUB_USERNAME }}/vlakvlog-app:${{ github.sha }}"
 
       - name: Tag and Push Nginx Docker image
         run: |
-          docker tag doogie17/my-nginx-image "${{ secrets.DOCKERHUB_USERNAME }}/my-nginx-image:${{ github.sha }}"
-          docker push "${{ secrets.DOCKERHUB_USERNAME }}/my-nginx-image:${{ github.sha }}"
+          docker tag doogie17/vlakvlog-nginx "${{ secrets.DOCKERHUB_USERNAME }}/vlakvlog-nginx:${{ github.sha }}"
+          docker push "${{ secrets.DOCKERHUB_USERNAME }}/vlakvlog-nginx:${{ github.sha }}"
