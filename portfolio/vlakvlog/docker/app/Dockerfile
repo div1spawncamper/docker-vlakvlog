@@ -22,7 +22,7 @@ RUN bundle install --jobs 20 --retry 5 --without development test
 # Copia wait-for-it.sh al contenedor
 # Copia los archivos de la aplicación
 COPY . $RAILS_ROOT
-COPY portfolio/entrypoint.sh /usr/bin/
+COPY portfolio/vlakvlog/entrypoint.sh /usr/bin/
 RUN chmod +x /usr/bin/entrypoint.sh
 COPY portfolio/vlakvlog/docker/app/wait-for-it.sh /usr/bin/wait-for-it
 RUN chmod +x /usr/bin/wait-for-it
