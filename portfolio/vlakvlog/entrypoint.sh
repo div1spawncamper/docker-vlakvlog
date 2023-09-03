@@ -7,9 +7,8 @@
 
 echo "ejecutando db:migrate"
 # Ejecuta las migraciones
-bundle exec rails db:migrate
-
+#bundle exec rails db:migrate
 echo "db:migrate ejecutados"
 
 # Inicia el servidor de Rails
-bundle exec rails server -b 0.0.0.0
+#bundle exec rails server -b 0.0.0.0
