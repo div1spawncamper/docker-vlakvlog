@@ -74,7 +74,7 @@ pg: PostgreSQL database adapter for Active Record.<br>
 Puma: Web server for the application.<br>
 
 Nginx:<br>
-Default config pointing at 127.0.0.1 and port 3000<br>
+Default config for reverse proxy pointing at 127.0.0.1 and port 3000<br>
 
 postgreSQL:<br>
 Host: db<br>
