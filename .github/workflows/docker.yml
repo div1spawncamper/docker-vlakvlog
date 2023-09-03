@@ -6,7 +6,7 @@ on:
       - main
 
 env:
-  VERSION_TAG: "0.0.2" # Aquí defines el número de versión
+  VERSION_TAG: "0.0.3" # Aquí defines el número de versión
 
 jobs:
   build:
@@ -25,10 +25,10 @@ jobs:
           ruby-version: 3.2.2
 
       - name: Build App Docker image
-        run: docker build -t doogie17/vlakvlog-app -f portfolio/vlakvlog/docker/app/Dockerfile .
+        run: docker build -t doogie17/vlakvlog-app -f /docker/app/Dockerfile .
 
       - name: Build Nginx Docker image
-        run: docker build -t doogie17/vlakvlog-nginx -f portfolio/vlakvlog/docker/web/Dockerfile .
+        run: docker build -t doogie17/vlakvlog-nginx -f /docker/web/Dockerfile .
 
       - name: Log in to Docker Hub
         run: echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
