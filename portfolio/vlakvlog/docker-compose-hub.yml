@@ -1,0 +1,41 @@
+version: '3'
+
+networks:
+  my_network:
+    driver: bridge
+
+volumes:
+  postgres_data:
+  app_data:
+
+services:
+  app:
+    image: doogie17/vlakvlog-app:efed868ffabfe779cebe2dacb27b7f8da6035839  # Utiliza la imagen de Docker Hub
+    environment:
+      - RAILS_ENV=development
+    entrypoint: ["/usr/bin/entrypoint.sh"]
+    depends_on:
+      - db
+    volumes:
+      - app_data:/var/www/app/public
+    networks:
+      - my_network
+
+  db:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: vlak1
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - my_network
+
+  web:
+    image: doogie17/vlakvlog-nginx:efed868ffabfe779cebe2dacb27b7f8da6035839  # Utiliza la imagen de Docker Hub
+    depends_on:
+      - app
+      - db
+    ports:
+      - 80:80
+    networks:
+      - my_network
