@@ -3,6 +3,7 @@ FROM ruby:3.2.2
 
 # Instala dependencias necesarias
 RUN apt-get update -qq && apt-get install -y build-essential libpq-dev nodejs libvips libvips-dev
+RUN gem install bundler
 
 # Setea una variable de entorno para la ubicación de la aplicación Rails dentro de la imagen Docker
 ENV RAILS_ROOT /var/www/app

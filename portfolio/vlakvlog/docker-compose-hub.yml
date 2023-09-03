@@ -10,7 +10,7 @@ volumes:
 
 services:
   app:
-    image: doogie17/vlakvlog-app:efed868ffabfe779cebe2dacb27b7f8da6035839  # Utiliza la imagen de Docker Hub
+    image: doogie17/vlakvlog-app:0.0.2  # Utiliza la imagen de Docker Hub
     environment:
       - RAILS_ENV=development
     entrypoint: ["/usr/bin/entrypoint.sh"]
@@ -31,7 +31,7 @@ services:
       - my_network
 
   web:
-    image: doogie17/vlakvlog-nginx:efed868ffabfe779cebe2dacb27b7f8da6035839  # Utiliza la imagen de Docker Hub
+    image: doogie17/vlakvlog-nginx:0.0.2  # Utiliza la imagen de Docker Hub
     depends_on:
       - app
       - db
