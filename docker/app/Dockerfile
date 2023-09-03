@@ -21,14 +21,11 @@ ENV RACK_ENV development
 COPY portfolio/vlakvlog/Gemfile portfolio/vlakvlog/Gemfile.lock $RAILS_ROOT/
 RUN bundle install --jobs 20 --retry 5 --without development test
 
-# Copia los archivos de la aplicación
-# Nota: Copia los archivos directamente en $RAILS_ROOT
-COPY portfolio/vlakvlog/ $RAILS_ROOT/
 
 # Copia y da permisos a los scripts de entrada
-COPY portfolio/vlakvlog/entrypoint.sh /usr/bin/
+COPY /entrypoint.sh /usr/bin/
 RUN chmod +x /usr/bin/entrypoint.sh
-COPY portfolio/vlakvlog/docker/app/wait-for-it.sh /usr/bin/wait-for-it
+COPY /docker/app/wait-for-it.sh /usr/bin/wait-for-it
 RUN chmod +x /usr/bin/wait-for-it
 
 # Comando para iniciar la aplicación
