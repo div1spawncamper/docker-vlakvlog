@@ -6,6 +6,10 @@
 #done
 
 #ECHO
+echo "Ejecutando db:create"
+bundle exec rails db:create
+
+#ECHO
 echo "Ejecutando db:migrate"
 bundle exec rails db:migrate
 
