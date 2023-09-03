@@ -6,7 +6,7 @@ on:
       - main
 
 env:
-  VERSION_TAG: "0.0.5" # Aquí defines el número de versión
+  VERSION_TAG: "0.0.6" # Aquí defines el número de versión
 
 jobs:
   build:

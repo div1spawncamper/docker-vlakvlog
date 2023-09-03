@@ -12,7 +12,8 @@
 #echo "Ejecutado db:migrate"
 
 #ECHO
-echo "Levantando rails server"
-bundle exec rails server -b 0.0.0.0
+#echo "Levantando rails server"
+#bundle exec rails server -b 0.0.0.0
 #ECHO
-echo "Rails server levantado"
+#echo "Rails server levantado"
+echo "entrypoint vacío"
