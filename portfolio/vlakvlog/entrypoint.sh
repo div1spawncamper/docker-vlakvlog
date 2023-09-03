@@ -5,10 +5,14 @@
 #  sleep 1
 #done
 
-echo "ejecutando db:migrate"
-# Ejecuta las migraciones
-#bundle exec rails db:migrate
-echo "db:migrate ejecutados"
+#ECHO
+echo "Ejecutando db:migrate"
+bundle exec rails db:migrate
+#ECHO
+echo "Ejecutado db:migrate"
 
-# Inicia el servidor de Rails
-#bundle exec rails server -b 0.0.0.0
+#ECHO
+echo "Levantando rails server"
+bundle exec rails server -b 0.0.0.0
+#ECHO
+echo "Rails server levantado"
