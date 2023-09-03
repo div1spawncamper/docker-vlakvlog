@@ -18,9 +18,8 @@ ENV RACK_ENV development
 
 # Copia el archivo Gemfile y Gemfile.lock para instalar las gemas
 # Asegúrate de copiarlos directamente a $RAILS_ROOT
-COPY Gemfile Gemfile.lock $RAILS_ROOT/
+COPY . $RAILS_ROOT/
 RUN bundle install --jobs 20 --retry 5 --without development test
-
 
 # Copia y da permisos a los scripts de entrada
 COPY ./entrypoint.sh /usr/bin/
