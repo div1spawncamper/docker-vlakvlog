@@ -7,7 +7,7 @@ on:
       - files-move
 
 env:
-  VERSION_TAG: "0.0.3" # Aquí defines el número de versión
+  VERSION_TAG: "0.0.1" # Aquí defines el número de versión
 
 jobs:
   build:
@@ -26,20 +26,20 @@ jobs:
           ruby-version: 3.2.2
 
       - name: Build App Docker image
-        run: docker build -t doogie17/vlakvlog-app -f ./docker/app/Dockerfile .
+        run: docker build -t div1spawncamper/vlakvlog-app -f ./docker/app/Dockerfile .
 
       - name: Build Nginx Docker image
-        run: docker build -t doogie17/vlakvlog-nginx -f ./docker/web/Dockerfile .
+        run: docker build -t div1spawncamper/vlakvlog-nginx -f ./docker/web/Dockerfile .
 
       - name: Log in to Docker Hub
         run: echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
 
       - name: Tag and Push App Docker image
         run: |
-          docker tag doogie17/vlakvlog-app "${{ secrets.DOCKERHUB_USERNAME }}/vlakvlog-app:${{ env.VERSION_TAG }}"
+          docker tag div1spawncamper/vlakvlog-app "${{ secrets.DOCKERHUB_USERNAME }}/vlakvlog-app:${{ env.VERSION_TAG }}"
           docker push "${{ secrets.DOCKERHUB_USERNAME }}/vlakvlog-app:${{ env.VERSION_TAG }}"
 
       - name: Tag and Push Nginx Docker image
         run: |
-          docker tag doogie17/vlakvlog-nginx "${{ secrets.DOCKERHUB_USERNAME }}/vlakvlog-nginx:${{ env.VERSION_TAG }}"
+          docker tag div1spawncamper/vlakvlog-nginx "${{ secrets.DOCKERHUB_USERNAME }}/vlakvlog-nginx:${{ env.VERSION_TAG }}"
           docker push "${{ secrets.DOCKERHUB_USERNAME }}/vlakvlog-nginx:${{ env.VERSION_TAG }}"
