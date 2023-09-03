@@ -34,7 +34,7 @@ RUN chmod +x /usr/bin/wait-for-it
 
 # Agrega un comando para esperar antes de iniciar la aplicación
 
-CMD bash -c "bundle exec rails db:migrate && sleep 2 && bundle exec puma -C config/puma.rb"
+CMD bash -c "sleep 2 && bundle exec puma -C config/puma.rb"
 
 # Expone el puerto en el que se ejecuta la aplicación Rails (puerto 3000)
 EXPOSE 3000
