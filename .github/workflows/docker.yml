@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - files-move
 
 env:
   VERSION_TAG: "0.0.3" # Aquí defines el número de versión
