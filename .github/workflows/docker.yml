@@ -5,6 +5,9 @@ on:
     branches:
       - main
 
+env:
+  VERSION_TAG: "0.0.1" # Aquí defines el número de versión
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -32,10 +35,10 @@ jobs:
 
       - name: Tag and Push App Docker image
         run: |
-          docker tag doogie17/vlakvlog-app "${{ secrets.DOCKERHUB_USERNAME }}/vlakvlog-app:${{ github.sha }}"
-          docker push "${{ secrets.DOCKERHUB_USERNAME }}/vlakvlog-app:${{ github.sha }}"
+          docker tag doogie17/vlakvlog-app "${{ secrets.DOCKERHUB_USERNAME }}/vlakvlog-app:${{ env.VERSION_TAG }}"
+          docker push "${{ secrets.DOCKERHUB_USERNAME }}/vlakvlog-app:${{ env.VERSION_TAG }}"
 
       - name: Tag and Push Nginx Docker image
         run: |
-          docker tag doogie17/vlakvlog-nginx "${{ secrets.DOCKERHUB_USERNAME }}/vlakvlog-nginx:${{ github.sha }}"
-          docker push "${{ secrets.DOCKERHUB_USERNAME }}/vlakvlog-nginx:${{ github.sha }}"
+          docker tag doogie17/vlakvlog-nginx "${{ secrets.DOCKERHUB_USERNAME }}/vlakvlog-nginx:${{ env.VERSION_TAG }}"
+          docker push "${{ secrets.DOCKERHUB_USERNAME }}/vlakvlog-nginx:${{ env.VERSION_TAG }}"
