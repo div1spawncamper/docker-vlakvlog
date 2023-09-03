@@ -10,7 +10,7 @@ volumes:
 
 services:
   app:
-    image: div1spawncamper/vlakvlog-app:0.0.2  # Utiliza la imagen de Docker Hub
+    image: div1spawncamper/vlakvlog-app:0.0.3  # Utiliza la imagen de Docker Hub
     environment:
       - RAILS_ENV=development
     entrypoint: ["/usr/bin/entrypoint.sh"]
@@ -31,7 +31,7 @@ services:
       - my_network
 
   web:
-    image: div1spawncamper/vlakvlog-nginx:0.0.2  # Utiliza la imagen de Docker Hub
+    image: div1spawncamper/vlakvlog-nginx:0.0.3  # Utiliza la imagen de Docker Hub
     depends_on:
       - app
       - db
