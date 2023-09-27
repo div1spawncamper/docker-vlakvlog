@@ -1,8 +1,7 @@
-# Docker-Vlakvlog
+# Docker-vlakvlog
 
-A simple blog application built with Ruby on Rails and Dockerized for easy deployment.
+"Dockerized" version of vlakvlog
 ## Quick Start
-
 1. Clone the repository:
    ```
    git clone https://github.com/div1spawncamper/docker-vlakvlog.git
