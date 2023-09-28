@@ -1,20 +1,20 @@
 #!/usr/bin/bash
 
-# Espera a que el servicio de base de datos esté listo
-#while ! pg_isready -U postgres -h db -p 5432 >/dev/null 2>&1; do
+# Testing: waits for database service to go up
+# while ! pg_isready -U postgres -h db -p 5432 >/dev/null 2>&1; do
 #  sleep 1
 #done
 
 #ECHO
-echo "Ejecutando db:create"
+echo "Executing db:create"
 bundle exec rails db:create
 
 #ECHO
-echo "Ejecutando db:migrate"
+echo "Executing db:migrate"
 bundle exec rails db:migrate
 
 #ECHO
-echo "Levantando rails server"
+echo "Bringin up rails server"
 bundle exec rails server -b 0.0.0.0
 
 
