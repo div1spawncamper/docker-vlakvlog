@@ -83,7 +83,7 @@ Database password: vlak1<br>
 
 This will pull the necessary images from Docker Hub and start the application. The blog should now be accessible at `http://localhost` port `80`. 
 
-For administrate dashboard, access `http://localhost/admin`
+To access administrate dashboard, visit `http://localhost/admin`
 
 
 
