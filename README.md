@@ -1,6 +1,6 @@
 # Docker-vlakvlog
 
-"Dockerized" version of vlakvlog
+Dockerized version of vlakvlog
 ## Quick Start
 1. Clone the repository:
    ```
