@@ -16,7 +16,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: List files in current directory
+      - name: List files in current directory for testing purposes
         run: ls -la
 
       - name: Set up Ruby environment
