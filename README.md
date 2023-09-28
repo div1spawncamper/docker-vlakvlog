@@ -1,4 +1,4 @@
-# Docker-vlakvlog
+# docker-vlakvlog
 
 Dockerized version of vlakvlog
 ## Quick Start
